@@ -9,9 +9,11 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import Store from 'electron-store';
+import { readdir } from 'fs/promises';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -38,6 +40,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+
+const store = new Store();
 
 if (isDevelopment) {
   require('electron-debug')();
@@ -133,3 +137,32 @@ app
     });
   })
   .catch(console.log);
+
+// Electron Store Listeners
+ipcMain.on('electron-store-get', async (event, val) => {
+  event.returnValue = store.get(val);
+});
+
+ipcMain.on('electron-store-set', async (_event, key, val) => {
+  store.set(key, val);
+});
+
+ipcMain.handle('browse-dialog', async (_event, args) => {
+  const selection = await dialog.showOpenDialog({
+    properties: ['openDirectory'],
+  });
+
+  if (!selection.canceled) {
+    let directory = selection.filePaths[0];
+    const files = await readdir(directory);
+
+    // Ensure they didn't select the top level directory
+    const topLevel = ['Downloads', 'Export', 'Install', 'Instances'];
+    if (files.every((file) => topLevel.includes(file)))
+      directory = path.join(directory, 'Instances');
+
+    return directory;
+  }
+
+  return args.oldPath;
+});
