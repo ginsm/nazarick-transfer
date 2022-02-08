@@ -1,3 +1,4 @@
+import { ipcMain, ipcRenderer } from 'electron';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
 
