@@ -19,5 +19,18 @@
     "test/**/__snapshots__": true,
     "package-lock.json": true,
     "*.{css,sass,scss}.d.ts": true
-  }
+  },
+  "workbench.colorCustomizations": {
+    "statusBar.noFolderBackground": "#17171b",
+    "statusBar.debuggingBackground": "#17171b"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
 }
