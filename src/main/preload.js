@@ -33,8 +33,8 @@ contextBridge.exposeInMainWorld('electron', {
   },
 
   // dialog.showOpenDialog
-  browseDialog(oldPath) {
-    return ipcRenderer.invoke('browse-dialog', oldPath);
+  browseForCurseForge(oldPath) {
+    return ipcRenderer.invoke('browse-for-curseforge', oldPath);
   },
 
   ...boilerplate,

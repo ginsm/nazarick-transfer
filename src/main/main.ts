@@ -147,22 +147,25 @@ ipcMain.on('electron-store-set', async (_event, key, val) => {
   store.set(key, val);
 });
 
-ipcMain.handle('browse-dialog', async (_event, args) => {
+ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
   const selection = await dialog.showOpenDialog({
     properties: ['openDirectory'],
   });
 
   if (!selection.canceled) {
-    let directory = selection.filePaths[0];
+    const directory = selection.filePaths[0];
     const files = await readdir(directory);
 
-    // Ensure they didn't select the top level directory
-    const topLevel = ['Downloads', 'Export', 'Install', 'Instances'];
-    if (files.every((file) => topLevel.includes(file)))
-      directory = path.join(directory, 'Instances');
+    // Ensure that they selected the proper folder
+    const expectedContents = [
+      'Downloads',
+      'Export',
+      'Install',
+      'Instances',
+    ].every((file) => files.includes(file));
 
-    return directory;
+    if (expectedContents) return directory;
   }
 
-  return args.oldPath;
+  return oldPath;
 });
