@@ -147,6 +147,11 @@ ipcMain.on('electron-store-set', async (_event, key, val) => {
   store.set(key, val);
 });
 
+ipcMain.on('electron-store-delete', async (_event, key) => {
+  store.delete(key);
+});
+
+// File browser (directory)
 ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
   const selection = await dialog.showOpenDialog({
     properties: ['openDirectory'],
@@ -168,4 +173,8 @@ ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
   }
 
   return oldPath;
+});
+
+ipcMain.on('path-join', (event, paths) => {
+  event.returnValue = path.join(...paths);
 });
