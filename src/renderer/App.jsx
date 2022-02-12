@@ -1,8 +1,15 @@
-import { ipcMain, ipcRenderer } from 'electron';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
+import useStore from './store';
 
 const Hello = () => {
+  const curseForgePath = useStore((state) => state.curseForgePath);
+  const setCurseForgePath = useStore((state) => state.setCurseForgePath);
+  const { setFile, setProcessing } = useStore((state) => ({
+    setFile: state.setFile,
+    setProcessing: state.setProcessing,
+  }));
+
   return (
     <div
       className="has-text-centered"
@@ -33,12 +40,30 @@ const Hello = () => {
       </div>
 
       <div className="buttons is-centered">
-        <button className="button is-primary" type="button">
+        <button
+          className="button is-primary"
+          type="button"
+          onClick={async () => {
+            const path = await window.electron.browseForCurseForge(
+              curseForgePath
+            );
+            setCurseForgePath(path);
+          }}
+        >
           Primary
         </button>
-        <button className="button is-link" type="button">
+        <button
+          className="button is-link"
+          type="button"
+          onClick={() => {
+            setProcessing('browse', false);
+          }}
+        >
           Link
         </button>
+      </div>
+      <div>
+        <p>CurseForgePath: {curseForgePath}</p>
       </div>
     </div>
   );
