@@ -1,4 +1,5 @@
 import customToast from 'renderer/utility/customToast';
+import { MdWavingHand, MdInfoOutline } from 'react-icons/md';
 
 const welcomeToast = () => {
   customToast({
@@ -11,7 +12,10 @@ const welcomeToast = () => {
         </p>
         <p style={{ marginTop: '0.5em' }}>
           If you need help with any configuration option, you can click on the
-          next to the option.
+          icon next to the option:
+        </p>
+        <p style={{ marginTop: '0.5em' }}>
+          <MdInfoOutline style={{ fontSize: '1.8em' }} />
         </p>
       </div>
     ),
@@ -21,6 +25,7 @@ const welcomeToast = () => {
     toastOptions: {
       duration: Infinity,
     },
+    icon: <MdWavingHand />,
   });
 };
 
