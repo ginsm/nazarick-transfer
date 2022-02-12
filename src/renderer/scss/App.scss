@@ -39,3 +39,6 @@ body {
 @import 'bulma/sass/helpers/_all.sass';
 @import 'bulma/sass/layout/_all.sass';
 @import 'bulma/sass/utilities/_all.sass';
+
+// Import app-specific scss
+@import './Animation.scss';
