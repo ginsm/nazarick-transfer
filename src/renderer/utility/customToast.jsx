@@ -14,7 +14,7 @@ const customToast = ({
   toast.custom(
     (t) => (
       <div
-        className={`${
+        className={`toast-${
           t.visible ? 'animate-enter' : 'animate-leave'
         } notification ${level ? `is-${level}` : ''} ${
           light && 'is-light'
