@@ -10,6 +10,7 @@ const customToast = ({
   buttonCallback,
   textAligned = 'center',
   toastOptions = {},
+  icon = '',
 }) => {
   toast.custom(
     (t) => (
@@ -32,7 +33,13 @@ const customToast = ({
             Close Toast
           </button>
         )}
-        {title && <h3 className="title is-5">{title}</h3>}
+        {title && (
+          <>
+            <h3 className="title is-5 is-flex is-align-content-center">
+              <span style={{ marginRight: '0.4em' }}>{icon}</span> {title}
+            </h3>
+          </>
+        )}
         {message}
         {buttonText && (
           <div className="level">
