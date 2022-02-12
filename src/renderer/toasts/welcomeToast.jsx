@@ -14,7 +14,10 @@ const welcomeToast = () => {
           If you need help with any configuration option, you can click on the
           icon next to the option:
         </p>
-        <p style={{ marginTop: '0.5em' }}>
+        <p
+          className="is-flex is-align-content-center"
+          style={{ marginTop: '0.5em' }}
+        >
           <MdInfoOutline style={{ fontSize: '1.8em' }} />
         </p>
       </div>
