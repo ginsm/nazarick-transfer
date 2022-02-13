@@ -35,7 +35,7 @@ const customToast = ({
         )}
         {title && (
           <>
-            <h3 className="title is-5 is-flex is-align-content-center">
+            <h3 className="title is-5 flex-align">
               <span style={{ marginRight: '0.4em' }}>{icon}</span> {title}
             </h3>
           </>
