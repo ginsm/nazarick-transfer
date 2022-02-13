@@ -9,20 +9,23 @@ const ConfigButton = () => {
   const navigate = useNavigate();
   const fontSize = '2em';
   const browseProcessing = useStore((state) => state.browseProcessing);
+  const transferProcessing = useStore((state) => state.transferProcessing);
 
   return location.pathname === '/config' ? (
     <MdOutlineClose
       style={{ fontSize }}
       className="config-button"
       title="Close Config"
-      onClick={() => !browseProcessing && navigate('/')}
+      onClick={() => !browseProcessing && !transferProcessing && navigate('/')}
     />
   ) : (
     <TiCog
       style={{ fontSize }}
       className="config-button"
-      title="OpenConfig"
-      onClick={() => !browseProcessing && navigate('/config')}
+      title="Open Config"
+      onClick={() =>
+        !browseProcessing && !transferProcessing && navigate('/config')
+      }
     />
   );
 };
