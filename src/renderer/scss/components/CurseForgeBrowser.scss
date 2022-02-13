@@ -1,0 +1,21 @@
+.directory-browser {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.directory-browser__button {
+  border-radius: 0.33em 0 0 0.33em;
+}
+
+.directory-browser__output {
+  display: block;
+  width: 25em;
+  padding: 0.4375em;
+  padding-left: 0.7em;
+  border: 1px solid #a8a8a8;
+  border-left: none;
+  border-radius: 0 0.33em 0.33em 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
