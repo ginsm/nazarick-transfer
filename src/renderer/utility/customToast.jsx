@@ -34,17 +34,15 @@ const customToast = ({
           </button>
         )}
         {title && (
-          <>
-            <h3 className="title is-5 flex-align">
-              <span
-                className="flex-align"
-                style={{ marginRight: '0.4em', fontSize: '1em' }}
-              >
-                {icon}
-              </span>{' '}
-              {title}
-            </h3>
-          </>
+          <h3 className="title is-5 flex-align">
+            <span
+              className="flex-align"
+              style={{ marginRight: '0.4em', fontSize: '1em' }}
+            >
+              {icon}
+            </span>{' '}
+            {title}
+          </h3>
         )}
         {message}
         {buttonText && (
@@ -55,7 +53,15 @@ const customToast = ({
                 <button
                   className="button"
                   type="button"
-                  onClick={buttonCallback || (() => toast.dismiss(t.id))}
+                  onClick={
+                    buttonCallback ||
+                    (() => {
+                      toast.dismiss(t.id);
+                      setTimeout(() => {
+                        toast.remove(t.id);
+                      }, 400);
+                    })
+                  }
                   style={{ marginTop: '0.3em' }}
                 >
                   {buttonText}

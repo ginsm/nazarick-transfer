@@ -145,7 +145,7 @@ app
   })
   .catch(console.log);
 
-// Electron Store Listeners
+// CONTEXTBRIDGE.STORE
 ipcMain.on('electron-store-get', async (event, val) => {
   event.returnValue = store.get(val);
 });
@@ -158,7 +158,7 @@ ipcMain.on('electron-store-delete', async (_event, key) => {
   store.delete(key);
 });
 
-// File browser (directory)
+// CONTEXTBRIDGE.ELECTRON
 ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
   const selection = await dialog.showOpenDialog({
     properties: ['openDirectory'],
@@ -190,10 +190,11 @@ ipcMain.handle('get-curseforge-instances', async (_event, curseForgePath) => {
     // Otherwise, return the Instances directory contents
     return [await readdir(path.join(curseForgePath, 'Instances')), ''];
   } catch (err) {
-    return [[], 'Please select a valid CurseForge Directory, thank you!'];
+    return [[], 'Please change your CurseForge Directory option, thank you!'];
   }
 });
 
+// CONTEXTBRIDGE.PATH
 ipcMain.on('path-join', (event, paths) => {
   event.returnValue = path.join(...paths);
 });
