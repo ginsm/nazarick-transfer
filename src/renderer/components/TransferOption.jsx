@@ -13,7 +13,7 @@ const TransferOption = (props) => {
           name={name}
           id={name}
           checked={transfer}
-          onClick={(event) => {
+          onChange={(event) => {
             setFile(event.target.name, {
               transfer: event.target.checked,
             });
