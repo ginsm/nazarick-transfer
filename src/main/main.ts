@@ -9,14 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import Store from 'electron-store';
-import { readdir, stat } from 'fs/promises';
 import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import registerIcpHandlers from './icpMain';
 
 export default class AppUpdater {
   constructor() {
@@ -41,8 +40,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
-
-const store = new Store();
 
 if (isDevelopment) {
   require('electron-debug')();
@@ -145,56 +142,4 @@ app
   })
   .catch(console.log);
 
-// CONTEXTBRIDGE.STORE
-ipcMain.on('electron-store-get', async (event, val) => {
-  event.returnValue = store.get(val);
-});
-
-ipcMain.on('electron-store-set', async (_event, key, val) => {
-  store.set(key, val);
-});
-
-ipcMain.on('electron-store-delete', async (_event, key) => {
-  store.delete(key);
-});
-
-// CONTEXTBRIDGE.ELECTRON
-ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
-  const selection = await dialog.showOpenDialog({
-    properties: ['openDirectory'],
-  });
-
-  if (!selection.canceled) {
-    const directory = selection.filePaths[0];
-    const files = await readdir(directory);
-
-    // Ensure that they selected the proper folder
-    const expectedContents = [
-      'Downloads',
-      'Export',
-      'Install',
-      'Instances',
-    ].every((file) => files.includes(file));
-
-    if (expectedContents) return [directory, ''];
-    return [oldPath, 'Oops, that seems to be the wrong directory!'];
-  }
-
-  return [oldPath, ''];
-});
-
-ipcMain.handle('get-curseforge-instances', async (_event, curseForgePath) => {
-  try {
-    // This will error out if the path does not exist
-    await stat(curseForgePath);
-    // Otherwise, return the Instances directory contents
-    return [await readdir(path.join(curseForgePath, 'Instances')), ''];
-  } catch (err) {
-    return [[], 'Please change your CurseForge Directory option, thank you!'];
-  }
-});
-
-// CONTEXTBRIDGE.PATH
-ipcMain.on('path-join', (event, paths) => {
-  event.returnValue = path.join(...paths);
-});
+registerIcpHandlers();
