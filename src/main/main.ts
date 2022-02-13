@@ -15,7 +15,7 @@ import log from 'electron-log';
 import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import registerIcpHandlers from './icpMain';
+import registerIcpHandlers from './ipcMain';
 
 export default class AppUpdater {
   constructor() {
