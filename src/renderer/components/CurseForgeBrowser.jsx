@@ -24,7 +24,7 @@ const CurseForgeBrowser = () => {
           }}
         >
           <MdOutlineScreenSearchDesktop style={{ marginRight: '0.3em' }} />
-          <span className="file-label">Browse</span>
+          <span>Browse</span>
         </button>
         <div className="directory-browser__output has-text-justified">
           {curseForgePath}
