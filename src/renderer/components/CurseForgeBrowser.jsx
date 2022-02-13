@@ -6,6 +6,7 @@ import curseForgeDirectoryHelp from 'renderer/toasts/curseForgeDirectoryHelp';
 const CurseForgeBrowser = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
   const setCurseForgePath = useStore((state) => state.setCurseForgePath);
+  const setProcessing = useStore((state) => state.setProcessing);
   const [error, setError] = useState('');
 
   return (
@@ -23,9 +24,11 @@ const CurseForgeBrowser = () => {
           className="directory-browser__button button is-info"
           type="button"
           onClick={async () => {
-            const [selection, err] = await window.electron.browseForCurseForge(
-              curseForgePath
-            );
+            const browsing =
+              window.electron.browseForCurseForge(curseForgePath);
+            setProcessing('browse', true);
+            const [selection, err] = await browsing;
+            setProcessing('browse', false);
             if (!err) setCurseForgePath(selection);
             setError(err);
           }}
