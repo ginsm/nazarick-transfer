@@ -2,7 +2,7 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import ConfigButton from 'renderer/components/ConfigButton';
 import CurseForgeBrowser from 'renderer/components/CurseForgeBrowser';
-import TransferOptions from 'renderer/components/TransferOptions';
+import TransferFiles from 'renderer/components/TransferFiles';
 
 const ConfigRoute = () => {
   return (
@@ -17,7 +17,7 @@ const ConfigRoute = () => {
         </div>
       </div>
       <CurseForgeBrowser />
-      <TransferOptions />
+      <TransferFiles />
     </div>
   );
 };
