@@ -18,7 +18,11 @@ const TransferFiles = () => {
       </h2>
       <div>
         {files.map((file) => (
-          <TransferOption name={file.name} transfer={file.transfer} />
+          <TransferOption
+            name={file.name}
+            transfer={file.transfer}
+            key={file.name}
+          />
         ))}
       </div>
     </div>
