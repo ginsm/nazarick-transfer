@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 // Set your brand colors
 $purple: #8a4d76;
@@ -11,7 +11,7 @@ $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
 
 // Update Bulma's global variables
-$family-sans-serif: 'Nunito', sans-serif;
+$family-sans-serif: 'Roboto', sans-serif;
 $grey-dark: $brown;
 $grey-light: $beige-light;
 $primary: $purple;
@@ -36,12 +36,14 @@ body {
 @import 'bulma/sass/elements/title.sass';
 @import 'bulma/sass/elements/notification.sass';
 @import 'bulma/sass/components/level.sass';
+@import 'bulma/sass/form/shared.sass';
 @import 'bulma/sass/helpers/typography.sass';
 
 // Import app-specific scss
 @import './Animation.scss';
 @import './components/ConfigButton.scss';
 @import './components/CurseForgeBrowser.scss';
+@import './components/TransferOption.scss';
 
 .route {
   max-width: 680px;
