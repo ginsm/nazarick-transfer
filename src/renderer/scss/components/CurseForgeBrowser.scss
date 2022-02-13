@@ -19,3 +19,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.curseforge-directory__help {
+  pre {
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+    color: #313131;
+  }
+}
