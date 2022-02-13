@@ -13,8 +13,8 @@ const HomeRoute = () => {
   const setFirstLaunch = useStore((state) => state.setFirstLaunch);
 
   useEffect(() => {
-    // setFirstLaunch(true);
     if (firstLaunch) {
+      setFirstLaunch(false);
       navigate('/config');
       welcomeToast();
     }
