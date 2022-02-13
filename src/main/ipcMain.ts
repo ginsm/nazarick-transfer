@@ -25,6 +25,7 @@ const registerIcpHandlers = () => {
   ipcMain.handle('get-curseforge-instances', handlers.electron.getInstances);
   ipcMain.handle('browse-for-curseforge', handlers.electron.browseForCF);
   ipcMain.handle('valid-curseforge-path', handlers.electron.validCFPath);
+  ipcMain.handle('copy-file', handlers.electron.copyFile);
 };
 
 export default registerIcpHandlers;

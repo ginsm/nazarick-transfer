@@ -13,6 +13,17 @@ contextBridge.exposeInMainWorld('electron', {
   validCurseForgePath(curseForgePath) {
     return ipcRenderer.invoke('valid-curseforge-path', curseForgePath);
   },
+
+  copyFile(
+    copyFileObj = {
+      cfPath: '',
+      name: '',
+      index: '',
+      profiles: ['', ''],
+    }
+  ) {
+    return ipcRenderer.invoke('copy-file', copyFileObj);
+  },
 });
 
 // electron-store methods
