@@ -5,6 +5,10 @@ contextBridge.exposeInMainWorld('electron', {
   browseForCurseForge(oldPath) {
     return ipcRenderer.invoke('browse-for-curseforge', oldPath);
   },
+
+  getInstances(curseForgePath) {
+    return ipcRenderer.invoke('get-curseforge-instances', curseForgePath);
+  },
 });
 
 // electron-store methods

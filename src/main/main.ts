@@ -13,7 +13,7 @@ import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import Store from 'electron-store';
-import { readdir } from 'fs/promises';
+import { readdir, stat } from 'fs/promises';
 import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -181,6 +181,17 @@ ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
   }
 
   return [oldPath, ''];
+});
+
+ipcMain.handle('get-curseforge-instances', async (_event, curseForgePath) => {
+  try {
+    // This will error out if the path does not exist
+    await stat(curseForgePath);
+    // Otherwise, return the Instances directory contents
+    return [await readdir(path.join(curseForgePath, 'Instances')), ''];
+  } catch (err) {
+    return [[], 'Please select a valid CurseForge Directory, thank you!'];
+  }
 });
 
 ipcMain.on('path-join', (event, paths) => {
