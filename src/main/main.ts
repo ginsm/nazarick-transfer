@@ -176,10 +176,11 @@ ipcMain.handle('browse-for-curseforge', async (_event, oldPath) => {
       'Instances',
     ].every((file) => files.includes(file));
 
-    if (expectedContents) return directory;
+    if (expectedContents) return [directory, ''];
+    return [oldPath, 'Oops, that seems to be the wrong directory!'];
   }
 
-  return oldPath;
+  return [oldPath, ''];
 });
 
 ipcMain.on('path-join', (event, paths) => {

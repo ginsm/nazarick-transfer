@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdOutlineScreenSearchDesktop, MdInfoOutline } from 'react-icons/md';
 import useStore from 'renderer/store';
 import curseForgeDirectoryHelp from 'renderer/toasts/curseForgeDirectoryHelp';
@@ -6,6 +6,7 @@ import curseForgeDirectoryHelp from 'renderer/toasts/curseForgeDirectoryHelp';
 const CurseForgeBrowser = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
   const setCurseForgePath = useStore((state) => state.setCurseForgePath);
+  const [error, setError] = useState('');
 
   return (
     <div>
@@ -22,10 +23,11 @@ const CurseForgeBrowser = () => {
           className="directory-browser__button button is-info"
           type="button"
           onClick={async () => {
-            const selectedPath = await window.electron.browseForCurseForge(
+            const [selection, err] = await window.electron.browseForCurseForge(
               curseForgePath
             );
-            setCurseForgePath(selectedPath);
+            if (!err) setCurseForgePath(selection);
+            setError(err);
           }}
         >
           <MdOutlineScreenSearchDesktop style={{ marginRight: '0.3em' }} />
@@ -35,6 +37,7 @@ const CurseForgeBrowser = () => {
           {curseForgePath}
         </div>
       </div>
+      <div className="error">{error || null}</div>
     </div>
   );
 };
