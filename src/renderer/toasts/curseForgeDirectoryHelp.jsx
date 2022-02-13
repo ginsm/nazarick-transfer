@@ -6,15 +6,15 @@ const curseForgeDirectoryHelp = () => {
     title: 'CurseForge Directory Help',
     message: (
       <div className="curseforge-directory__help">
-        <p style={{ marginTop: '-0.5em' }}>
+        <div style={{ marginTop: '-0.5em' }}>
           This options expects you to select the CurseForge folder location. It
           should have four folders inside of it:
           <pre>Downloads, Export, Install, and Instances</pre>
-        </p>
-        <p style={{ marginTop: '1em' }}>
+        </div>
+        <div style={{ marginTop: '1em' }}>
           For example, here&#39;s the default location on Windows:{' '}
           <pre>C:\Users\[user]\curseforge\</pre>
-        </p>
+        </div>
       </div>
     ),
     level: 'info',
