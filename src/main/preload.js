@@ -2,12 +2,16 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
   // dialog.showOpenDialog
-  browseForCurseForge(oldPath) {
+  browseForCF(oldPath) {
     return ipcRenderer.invoke('browse-for-curseforge', oldPath);
   },
 
   getInstances(curseForgePath) {
     return ipcRenderer.invoke('get-curseforge-instances', curseForgePath);
+  },
+
+  validCurseForgePath(curseForgePath) {
+    return ipcRenderer.invoke('valid-curseforge-path', curseForgePath);
   },
 });
 
@@ -23,12 +27,5 @@ contextBridge.exposeInMainWorld('store', {
 
   delete(property) {
     ipcRenderer.send('electron-store-delete', property);
-  },
-});
-
-// necessary path methods
-contextBridge.exposeInMainWorld('path', {
-  join(...paths) {
-    return ipcRenderer.sendSync('path-join', paths);
   },
 });

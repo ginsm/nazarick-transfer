@@ -24,8 +24,7 @@ const CurseForgeBrowser = () => {
           className="directory-browser__button button is-info"
           type="button"
           onClick={async () => {
-            const browsing =
-              window.electron.browseForCurseForge(curseForgePath);
+            const browsing = window.electron.browseForCF(curseForgePath);
             setProcessing('browse', true);
             const [selection, err] = await browsing;
             setProcessing('browse', false);
