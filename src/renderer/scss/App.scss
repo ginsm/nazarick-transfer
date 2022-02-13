@@ -41,7 +41,7 @@ body {
 
 // Import app-specific scss
 @import './Animation.scss';
-@import './Buttons.scss';
+@import './components/ConfigButton.scss';
 @import './components/CurseForgeBrowser.scss';
 
 .route {

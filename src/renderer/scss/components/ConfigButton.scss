@@ -1,0 +1,13 @@
+@mixin button-text($background-color) {
+  color: $background-color;
+  &:hover {
+    color: darken($background-color, 15%);
+  }
+  &:active {
+    color: darken($background-color, 25%);
+  }
+}
+
+.config-button {
+  @include button-text($link);
+}
