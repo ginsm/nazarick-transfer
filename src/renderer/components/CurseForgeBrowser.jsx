@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdOutlineScreenSearchDesktop, MdInfoOutline } from 'react-icons/md';
 import useStore from 'renderer/store';
+import curseForgeDirectoryHelp from 'renderer/toasts/curseForgeDirectoryHelp';
 
 const CurseForgeBrowser = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
@@ -10,7 +11,11 @@ const CurseForgeBrowser = () => {
     <div>
       <h2 className="title is-5 flex-align" style={{ margin: '2em 0 0.8em 0' }}>
         CurseForge Directory{' '}
-        <MdInfoOutline style={{ marginLeft: '0.5em', fontSize: '1.1em' }} />
+        <MdInfoOutline
+          className="config-button"
+          style={{ marginLeft: '0.3em', fontSize: '1.1em' }}
+          onClick={curseForgeDirectoryHelp}
+        />
       </h2>
       <div className="directory-browser">
         <button
