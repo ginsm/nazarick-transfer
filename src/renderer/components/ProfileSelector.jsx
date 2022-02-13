@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdInfoOutline } from 'react-icons/md';
 import useStore from 'renderer/store';
+import selectProfileToast from 'renderer/toasts/selectProfileToast';
 import Selector from './Selector';
 
 const ProfileSelector = () => {
@@ -36,7 +37,7 @@ const ProfileSelector = () => {
         <MdInfoOutline
           className="config-button"
           style={{ marginLeft: '0.3em', fontSize: '1.1em' }}
-          onClick={console.log}
+          onClick={selectProfileToast}
         />
       </h2>
       <div className="level" style={{ maxWidth: '26.5em' }}>
