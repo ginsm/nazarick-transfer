@@ -20,56 +20,47 @@ const useStore = create(
     browseProcessing: false,
     transferProcessing: false,
     firstLaunch: true,
+    progress: 0,
     files: [
       {
         name: 'options.txt',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'servers.dat',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'config',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'resourcepacks',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'saves',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'schematics',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'screenshots',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'shaderpacks',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'XaeroWaypoints',
         transfer: true,
-        transferred: false,
       },
       {
         name: 'XaeroWorldMap',
         transfer: true,
-        transferred: false,
       },
     ],
 
@@ -91,6 +82,7 @@ const useStore = create(
         return { files };
       }),
 
+    setProgress: (value) => setter(set, 'progress', value),
     setProfile: (key, value) => setter(set, `${key}Profile`, value),
     setProcessing: (key, value) => setter(set, `${key}Processing`, value),
     setCurseForgePath: (value) => setter(set, 'curseForgePath', value),
