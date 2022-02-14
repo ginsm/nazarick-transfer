@@ -6,7 +6,6 @@ import path from 'path';
 interface CopyFileObj {
   cfPath: string;
   name: string;
-  index: number;
   profiles: string[];
 }
 
@@ -62,7 +61,7 @@ const getElectronHandlers = () => {
       ];
 
       if (issues.some(Boolean))
-        return [0, 'Improper data has been sent. Stopping transfer.'];
+        return ['Improper data has been sent. Stopping transfer.'];
 
       const [src, dest] = obj.profiles.map((item) =>
         path.join(obj.cfPath, 'Instances', item, obj.name)
@@ -70,10 +69,10 @@ const getElectronHandlers = () => {
 
       try {
         await copy(src, dest);
-        return [obj.index, ''];
+        return [];
       } catch (err: any) {
-        if (err.code === 'ENOENT') return [obj.index, ''];
-        return [obj.index, 'An unexpected error occurred. Stopping transfer.'];
+        if (err.code === 'ENOENT') return [];
+        return ['An unexpected error occurred. Stopping transfer.'];
       }
     },
   };
