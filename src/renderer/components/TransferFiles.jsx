@@ -9,7 +9,7 @@ const TransferFiles = () => {
   return (
     <div>
       <h2 className="title is-5 flex-align" style={{ margin: '2em 0 0.8em 0' }}>
-        Transfer Files{' '}
+        Transfer Options{' '}
         <MdInfoOutline
           className="config-button"
           style={{ marginLeft: '0.3em', fontSize: '1.1em' }}

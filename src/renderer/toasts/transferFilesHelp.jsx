@@ -3,7 +3,7 @@ import { MdInfoOutline } from 'react-icons/md';
 
 const transferFilesHelp = () => {
   customToast({
-    title: 'Transfer Files Help',
+    title: 'Transfer Options Help',
     message: (
       <div className="curseforge-directory__help">
         <p style={{ marginTop: '-0.5em' }}>
