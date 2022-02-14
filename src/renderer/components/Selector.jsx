@@ -8,6 +8,7 @@ const Selector = ({ profile, name, instances }) => {
   const setProfile = useStore((state) => state.setProfile);
   const profileValue = useStore((state) => state[`${profile}Profile`]);
   const oppositeValue = useStore((state) => state[`${oppositeProfile}Profile`]);
+  const transferProcessing = useStore((state) => state.transferProcessing);
 
   return (
     <div>
@@ -29,6 +30,7 @@ const Selector = ({ profile, name, instances }) => {
             }
           }}
           value={profileValue}
+          disabled={transferProcessing}
         >
           <option>Select Option...</option>
           {instances.map((instance) => (
