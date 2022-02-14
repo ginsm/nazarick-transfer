@@ -7,7 +7,6 @@ import Selector from './Selector';
 const ProfileSelector = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
   const [instances, setInstances] = useState([]);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     let isMounted = true;
@@ -17,7 +16,6 @@ const ProfileSelector = () => {
       .then(([arr, err]) => {
         if (isMounted) {
           if (!err) setInstances(arr);
-          setError(err);
         }
         return [arr, err];
       })
@@ -46,7 +44,6 @@ const ProfileSelector = () => {
           <Selector profile="new" name="New" instances={instances} />
         </div>
       </div>
-      <div className="error">{error || null}</div>
     </div>
   );
 };
