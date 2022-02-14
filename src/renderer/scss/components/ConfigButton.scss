@@ -9,6 +9,6 @@
 }
 
 .config-button {
-  @include button-text($link);
+  @include button-text($info);
   cursor: pointer;
 }

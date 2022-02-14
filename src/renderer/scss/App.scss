@@ -24,12 +24,7 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
-html,
-body {
-  width: 100%;
-}
-
-// Import only what you need from Bulma
+// Import only necessary Bulma classes
 @import 'bulma/sass/utilities/_all.sass';
 @import 'bulma/sass/base/_all.sass';
 @import 'bulma/sass/elements/button.sass';
@@ -46,6 +41,12 @@ body {
 @import './components/ConfigButton.scss';
 @import './components/CurseForgeBrowser.scss';
 @import './components/TransferOption.scss';
+@import './components/TransferButton.scss';
+
+html,
+body {
+  width: 100%;
+}
 
 .route {
   max-width: 680px;

@@ -38,7 +38,7 @@ const ProfileSelector = () => {
           onClick={selectProfileToast}
         />
       </h2>
-      <div className="level" style={{ maxWidth: '26.5em' }}>
+      <div className="level" style={{ maxWidth: '22.5em' }}>
         <div className="level-left">
           <Selector profile="old" name="Old" instances={instances} />
         </div>
