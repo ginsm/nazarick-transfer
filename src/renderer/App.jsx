@@ -1,10 +1,4 @@
-import {
-  MemoryRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-  Navigate,
-} from 'react-router-dom';
+import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
 import HomeRoute from './routes/Home';
 import ConfigRoute from './routes/Config';
