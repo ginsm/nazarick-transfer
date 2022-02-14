@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IpcMainInvokeEvent, dialog } from 'electron';
 import { readdir, pathExists, copy } from 'fs-extra';
 import path from 'path';
@@ -53,19 +54,15 @@ const getElectronHandlers = () => {
     validCFPath: async (_e: IpcMainInvokeEvent, cfPath: string) =>
       validCFPath(cfPath),
 
-    /**
-     * This method expects that the obj has correct variables 100% of the time.
-     * @param _e
-     * @param obj
-     * @returns
-     */
     copyFile: async (_e: IpcMainInvokeEvent, obj: CopyFileObj) => {
-      if (!obj.cfPath || !obj.name || obj.profiles.length !== 2) {
-        return [
-          0,
-          'Improper data has been sent to the copyFile function. Stopping transfer.',
-        ];
-      }
+      const issues = [
+        !obj.name,
+        !(await validCFPath(obj.cfPath)),
+        obj.profiles.length !== 2,
+      ];
+
+      if (issues.some(Boolean))
+        return [0, 'Improper data has been sent. Stopping transfer.'];
 
       const [src, dest] = obj.profiles.map((item) =>
         path.join(obj.cfPath, 'Instances', item, obj.name)
@@ -74,7 +71,8 @@ const getElectronHandlers = () => {
       try {
         await copy(src, dest);
         return [obj.index, ''];
-      } catch (err) {
+      } catch (err: any) {
+        if (err.code === 'ENOENT') return [obj.index, ''];
         return [obj.index, 'An unexpected error occurred. Stopping transfer.'];
       }
     },
