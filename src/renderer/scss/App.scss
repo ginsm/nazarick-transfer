@@ -9,20 +9,22 @@ $pink: #fa7c91;
 $brown: #757763;
 $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
+$blue: #485fc7;
+$cyan: #3e8ed0;
+$green: #3fa85a;
 
 // Update Bulma's global variables
 $family-sans-serif: 'Roboto', sans-serif;
-$grey-dark: $brown;
+$grey-dark: #232325;
 $grey-light: $beige-light;
 $primary: $purple;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;
+$body-background-color: #e8eaeb;
+$input-border-color: #b1b1b1;
+$input-hover-border-color: $cyan;
 
 // Import only necessary Bulma classes
 @import 'bulma/sass/utilities/_all.sass';
@@ -31,6 +33,7 @@ $input-shadow: none;
 @import 'bulma/sass/elements/title.sass';
 @import 'bulma/sass/elements/notification.sass';
 @import 'bulma/sass/elements/other.sass';
+@import 'bulma/sass/elements/progress.sass';
 @import 'bulma/sass/components/level.sass';
 @import 'bulma/sass/form/shared.sass';
 @import 'bulma/sass/form/select.sass';
