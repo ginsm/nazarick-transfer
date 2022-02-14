@@ -11,7 +11,10 @@ const selectProfileToast = () => {
           the two profiles that will be used during the transfer (old -&gt;
           new).
         </p>
-        <p style={{ marginTop: '1em' }}>
+        <h3 className="title is-6" style={{ margin: 0, marginTop: '1.2em' }}>
+          Hint
+        </h3>
+        <p style={{ marginTop: '0.3em' }}>
           If you would like to change which files should be transferred you can
           do so in the config menu. To get there, click the gear in the top
           right.
