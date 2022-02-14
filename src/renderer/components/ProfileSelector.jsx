@@ -11,11 +11,9 @@ const ProfileSelector = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const getInstances = async () => {
-      return window.electron.getInstances(curseForgePath);
-    };
 
-    getInstances()
+    window.electron
+      .getInstances(curseForgePath)
       .then(([arr, err]) => {
         if (isMounted) {
           if (!err) setInstances(arr);
@@ -42,20 +40,10 @@ const ProfileSelector = () => {
       </h2>
       <div className="level" style={{ maxWidth: '26.5em' }}>
         <div className="level-left">
-          <Selector
-            profile="old"
-            name="Old"
-            instances={instances}
-            setError={setError}
-          />
+          <Selector profile="old" name="Old" instances={instances} />
         </div>
         <div className="level-right">
-          <Selector
-            profile="new"
-            name="New"
-            instances={instances}
-            setError={setError}
-          />
+          <Selector profile="new" name="New" instances={instances} />
         </div>
       </div>
       <div className="error">{error || null}</div>

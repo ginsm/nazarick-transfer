@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import useStore from 'renderer/store';
+import swappedProfilesToast from 'renderer/toasts/swappedProfilesToast';
 
-const Selector = ({ profile, name, instances, setError }) => {
+const Selector = ({ profile, name, instances }) => {
+  const oppositeProfile = profile === 'old' ? 'new' : 'old';
   const setProfile = useStore((state) => state.setProfile);
   const profileValue = useStore((state) => state[`${profile}Profile`]);
-  const oppositeValue = useStore(
-    (state) => state[`${profile === 'old' ? 'new' : 'old'}Profile`]
-  );
-
-  const [oldValue, setOldValue] = useState('');
+  const oppositeValue = useStore((state) => state[`${oppositeProfile}Profile`]);
 
   return (
     <div>
@@ -18,22 +16,16 @@ const Selector = ({ profile, name, instances, setError }) => {
       </h3>
       <div className="select">
         <select
-          onFocus={(event) => setOldValue(event.target.value)}
           onChange={(event) => {
             const { value } = event.target;
             if (value !== 'Select Option...') {
-              if (oppositeValue !== value) {
-                setProfile(profile, value);
-                setError('');
-              } else {
-                event.target.value = oldValue;
-                setError(
-                  'You cannot select the same profile for both choices.'
-                );
+              if (oppositeValue === value) {
+                setProfile(oppositeProfile, profileValue);
+                swappedProfilesToast();
               }
+              setProfile(profile, value);
             } else {
               setProfile(profile, '');
-              setError('');
             }
           }}
           value={profileValue}
