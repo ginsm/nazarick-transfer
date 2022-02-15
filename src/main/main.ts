@@ -15,7 +15,7 @@ import log from 'electron-log';
 import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import registerIcpHandlers from './ipcMain';
+import registerIpcHandlers from './ipcMain';
 
 export default class AppUpdater {
   constructor() {
@@ -73,10 +73,10 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 947,
-    height: 628,
-    minWidth: 947,
-    minHeight: 628,
+    width: 946,
+    height: 656,
+    minWidth: 946,
+    minHeight: 656,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -144,4 +144,4 @@ app
   })
   .catch(console.log);
 
-registerIcpHandlers();
+registerIpcHandlers();

@@ -4,7 +4,7 @@ import Store from 'electron-store';
 import getStoreHandlers from './handlers/store';
 import getElectronHandlers from './handlers/electron';
 
-const registerIcpHandlers = () => {
+const registerIpcHandlers = () => {
   const store = new Store();
 
   const handlers = {
@@ -28,4 +28,4 @@ const registerIcpHandlers = () => {
   ipcMain.handle('copy-file', handlers.electron.copyFile);
 };
 
-export default registerIcpHandlers;
+export default registerIpcHandlers;
