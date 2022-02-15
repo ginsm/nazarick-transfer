@@ -6,6 +6,8 @@ import TransferOption from './TransferOption';
 
 const TransferFiles = () => {
   const files = useStore((state) => state.files);
+  const setFilesTransfer = useStore((state) => state.setFilesTransfer);
+
   return (
     <div>
       <h2 className="title is-5 flex-align" style={{ margin: '2em 0 0.8em 0' }}>
@@ -16,6 +18,22 @@ const TransferFiles = () => {
           onClick={transferFilesHelp}
         />
       </h2>
+      <div className="buttons are-small buttons__remove-margin">
+        <button
+          className="button"
+          type="button"
+          onClick={() => setFilesTransfer(true)}
+        >
+          All
+        </button>
+        <button
+          className="button"
+          type="button"
+          onClick={() => setFilesTransfer(false)}
+        >
+          None
+        </button>
+      </div>
       <div>
         {files.map((file) => (
           <TransferOption

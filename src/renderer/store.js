@@ -82,6 +82,16 @@ const useStore = create(
         return { files };
       }),
 
+    setFilesTransfer: (bool) =>
+      set((state) => {
+        const files = state.files.map((file) => ({
+          ...file,
+          transfer: bool,
+        }));
+
+        return { files };
+      }),
+
     setProgress: (value) => setter(set, 'progress', value),
     setProfile: (key, value) => setter(set, `${key}Profile`, value),
     setProcessing: (key, value) => setter(set, `${key}Processing`, value),
