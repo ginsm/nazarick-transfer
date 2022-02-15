@@ -2,7 +2,7 @@ import React from 'react';
 import { MdInfoOutline } from 'react-icons/md';
 import useStore from 'renderer/store';
 import transferFilesHelp from 'renderer/toasts/transferFilesHelp';
-import TransferOption from './TransferOption';
+import TransferFilesOption from './TransferFilesOption';
 
 const TransferFiles = () => {
   const files = useStore((state) => state.files);
@@ -36,7 +36,7 @@ const TransferFiles = () => {
       </div>
       <div>
         {files.map((file) => (
-          <TransferOption
+          <TransferFilesOption
             name={file.name}
             transfer={file.transfer}
             key={file.name}
