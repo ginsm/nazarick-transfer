@@ -8,7 +8,6 @@ const ConfigButton = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const fontSize = '2em';
-  const browseProcessing = useStore((state) => state.browseProcessing);
   const transferProcessing = useStore((state) => state.transferProcessing);
 
   return location.pathname === '/config' ? (
@@ -16,16 +15,14 @@ const ConfigButton = () => {
       style={{ fontSize }}
       className="config-button"
       title="Close Config"
-      onClick={() => !browseProcessing && !transferProcessing && navigate('/')}
+      onClick={() => !transferProcessing && navigate('/')}
     />
   ) : (
     <TiCog
       style={{ fontSize }}
       className="config-button"
       title="Open Config"
-      onClick={() =>
-        !browseProcessing && !transferProcessing && navigate('/config')
-      }
+      onClick={() => !transferProcessing && navigate('/config')}
     />
   );
 };

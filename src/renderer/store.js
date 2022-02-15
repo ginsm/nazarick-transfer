@@ -17,7 +17,6 @@ const useStore = create(
     curseForgePath: '',
     oldProfile: '',
     newProfile: '',
-    browseProcessing: false,
     transferProcessing: false,
     firstLaunch: true,
     progress: 0,
