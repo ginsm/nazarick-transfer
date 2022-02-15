@@ -3,7 +3,7 @@ import React from 'react';
 import useStore from 'renderer/store';
 import success from 'renderer/toasts/generic/success';
 
-const Selector = ({ profile, name, instances }) => {
+const Selector = ({ profile, name, instances, setRefreshInstances }) => {
   const oppositeProfile = profile === 'old' ? 'new' : 'old';
   const setProfile = useStore((state) => state.setProfile);
   const profileValue = useStore((state) => state[`${profile}Profile`]);
@@ -18,6 +18,7 @@ const Selector = ({ profile, name, instances }) => {
       <div className="select">
         <select
           style={{ maxWidth: '10.0625em' }}
+          onFocus={() => setRefreshInstances(true)}
           onChange={(event) => {
             const { value } = event.target;
             if (value !== 'Select Option...') {

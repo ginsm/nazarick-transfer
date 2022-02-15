@@ -7,24 +7,30 @@ import SelectProfilesSelector from './SelectProfilesSelector';
 const ProfileSelector = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
   const [instances, setInstances] = useState([]);
+  const [refreshInstances, setRefreshInstances] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
-    window.electron
-      .getInstances(curseForgePath)
-      .then(([arr, err]) => {
-        if (isMounted) {
-          if (!err) setInstances(arr);
-        }
-        return [arr, err];
-      })
-      .catch(() => {});
+    if (refreshInstances) {
+      window.electron
+        .getInstances(curseForgePath)
+        .then(([arr, err]) => {
+          if (isMounted) {
+            if (!err) {
+              setInstances(arr);
+              setRefreshInstances(false);
+            }
+          }
+          return [arr, err];
+        })
+        .catch(() => {});
+    }
 
     return () => {
       isMounted = false;
     };
-  }, [curseForgePath]);
+  }, [curseForgePath, refreshInstances]);
 
   return (
     <div>
@@ -42,6 +48,7 @@ const ProfileSelector = () => {
             profile="old"
             name="Old"
             instances={instances}
+            setRefreshInstances={setRefreshInstances}
           />
         </div>
         <div className="level-right">
@@ -49,6 +56,7 @@ const ProfileSelector = () => {
             profile="new"
             name="New"
             instances={instances}
+            setRefreshInstances={setRefreshInstances}
           />
         </div>
       </div>
