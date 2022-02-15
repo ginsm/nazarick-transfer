@@ -1,13 +1,13 @@
 {
-  "name": "electron-react-boilerplate",
-  "description": "A foundation for scalable desktop apps",
+  "name": "nazarick-transfer",
+  "description": "Simple Minecraft settings transferring app",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
-    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never",
+    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never --win",
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.ts && opencollective-postinstall",
     "start": "ts-node ./.erb/scripts/check-port-in-use.js && npm run start:renderer",
     "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./src/main/main.ts",
@@ -30,7 +30,7 @@
     ]
   },
   "build": {
-    "productName": "NazarickTransfer",
+    "productName": "Nazarick Transfer",
     "appId": "me.mgin.NazarickTransfer",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
@@ -95,41 +95,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/ginsm/nazarick-transfer.git"
   },
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "Ginsm",
+    "url": "https://github.com/ginsm/nazarick-transfer"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    },
-    {
-      "name": "John Tran",
-      "email": "jptran318@gmail.com",
-      "url": "https://github.com/jooohhn"
-    }
-  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": "https://github.com/ginsm/nazarick-transfer/issues"
   },
   "keywords": [
     "electron",
-    "boilerplate",
-    "react",
-    "typescript",
-    "ts",
-    "sass",
-    "webpack",
-    "hot",
-    "reload"
+    "minecraft",
+    "settings",
+    "transfer",
+    "copy",
+    "curseforge",
+    "instance"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/ginsm/nazarick-transfer/",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",
@@ -242,9 +227,6 @@
   "devEngines": {
     "node": ">=14.x",
     "npm": ">=7.x"
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "browserslist": [],
   "prettier": {
