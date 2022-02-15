@@ -51,7 +51,7 @@ const customToast = ({
             <div className="level-right">
               <div className="level-item">
                 <button
-                  className="button"
+                  className="button is-small"
                   type="button"
                   onClick={
                     buttonCallback ||
@@ -62,7 +62,7 @@ const customToast = ({
                       }, 400);
                     })
                   }
-                  style={{ marginTop: '0.3em' }}
+                  style={{ marginTop: '1em' }}
                 >
                   {buttonText}
                 </button>
