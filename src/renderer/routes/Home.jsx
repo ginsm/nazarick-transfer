@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import ConfigButton from 'renderer/components/ConfigButton';
-import ProfileSelector from 'renderer/components/ProfileSelector';
+import SelectProfiles from 'renderer/components/SelectProfiles';
 import TransferButton from 'renderer/components/TransferButton';
 import useStore from 'renderer/store';
 import welcomeToast from 'renderer/toasts/welcomeToast';
@@ -31,7 +31,7 @@ const HomeRoute = () => {
           <ConfigButton />
         </div>
       </div>
-      <ProfileSelector />
+      <SelectProfiles />
       <TransferButton />
     </div>
   );

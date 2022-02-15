@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdInfoOutline } from 'react-icons/md';
 import useStore from 'renderer/store';
 import selectProfileToast from 'renderer/toasts/selectProfileToast';
-import Selector from './Selector';
+import SelectProfilesSelector from './SelectProfilesSelector';
 
 const ProfileSelector = () => {
   const curseForgePath = useStore((state) => state.curseForgePath);
@@ -38,10 +38,18 @@ const ProfileSelector = () => {
       </h2>
       <div className="level" style={{ maxWidth: '22.5em' }}>
         <div className="level-left">
-          <Selector profile="old" name="Old" instances={instances} />
+          <SelectProfilesSelector
+            profile="old"
+            name="Old"
+            instances={instances}
+          />
         </div>
         <div className="level-right">
-          <Selector profile="new" name="New" instances={instances} />
+          <SelectProfilesSelector
+            profile="new"
+            name="New"
+            instances={instances}
+          />
         </div>
       </div>
     </div>
