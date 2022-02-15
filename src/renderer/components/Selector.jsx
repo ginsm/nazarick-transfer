@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import useStore from 'renderer/store';
-import swappedProfilesToast from 'renderer/toasts/swappedProfilesToast';
+import success from 'renderer/toasts/generic/success';
 
 const Selector = ({ profile, name, instances }) => {
   const oppositeProfile = profile === 'old' ? 'new' : 'old';
@@ -23,7 +23,7 @@ const Selector = ({ profile, name, instances }) => {
             if (value !== 'Select Option...') {
               if (oppositeValue === value) {
                 setProfile(oppositeProfile, profileValue);
-                swappedProfilesToast();
+                success('The profile choices have been swapped!');
               }
               setProfile(profile, value);
             } else {
