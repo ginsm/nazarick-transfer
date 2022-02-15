@@ -17,6 +17,7 @@ const Selector = ({ profile, name, instances }) => {
       </h3>
       <div className="select">
         <select
+          style={{ maxWidth: '10.0625em' }}
           onChange={(event) => {
             const { value } = event.target;
             if (value !== 'Select Option...') {
