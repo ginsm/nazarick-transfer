@@ -12,7 +12,7 @@ const ProfileSelector = () => {
   useEffect(() => {
     let isMounted = true;
 
-    if (refreshInstances) {
+    if (instances.length <= 0 || refreshInstances) {
       window.electron
         .getInstances(curseForgePath)
         .then(([arr, err]) => {
@@ -30,7 +30,7 @@ const ProfileSelector = () => {
     return () => {
       isMounted = false;
     };
-  }, [curseForgePath, refreshInstances]);
+  }, [instances, curseForgePath, refreshInstances]);
 
   return (
     <div>
