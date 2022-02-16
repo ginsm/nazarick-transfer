@@ -25,6 +25,8 @@ $fullhd-enabled: false;
 $body-background-color: #eff2f3;
 $input-border-color: #b1b1b1;
 $input-hover-border-color: $cyan;
+$button-border-color: $input-border-color;
+$button-hover-border-color: $input-hover-border-color;
 
 // Import only necessary Bulma classes
 @import 'bulma/sass/utilities/_all.sass';
