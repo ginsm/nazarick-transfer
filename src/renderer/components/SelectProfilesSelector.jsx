@@ -32,6 +32,7 @@ const Selector = ({ profile, name, instances, setRefreshInstances }) => {
             }
           }}
           value={profileValue}
+          title={profileValue}
           disabled={transferProcessing}
         >
           <option>Select Option...</option>
