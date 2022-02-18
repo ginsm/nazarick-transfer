@@ -12,18 +12,18 @@ interface CopyFileObj {
 const getElectronHandlers = () => {
   const validCFPath = async (cfPath: string) => {
     if (await pathExists(cfPath)) {
-      const files = await readdir(cfPath);
+      const installDir = path.join(cfPath, 'Install');
+      const instanceDir = path.join(cfPath, 'Instances');
+      const target = 'minecraft.exe';
 
-      // Ensure that they selected the proper folder
-      const expectedContents = [
-        'Downloads',
-        'Export',
-        'Install',
-        'Instances',
-      ].every((file) => files.includes(file));
+      const pathsExist = (
+        await Promise.all([installDir, instanceDir].map(pathExists))
+      ).every(Boolean);
 
-      if (expectedContents) return true;
+      if (!pathsExist) return false;
+      if ((await readdir(installDir)).includes(target)) return true;
     }
+
     return false;
   };
 
