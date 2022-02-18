@@ -7,11 +7,17 @@ const { default: useStore } = require('renderer/store');
 
 const transfer = {
   initiateTransfer: async () => {
-    const { files } = useStore.getState();
+    const { files, newProfile, oldProfile } = useStore.getState();
     const base = await transfer.getBaseCopyObject();
+    const profilesSet = [oldProfile, newProfile].every(Boolean);
 
     if (!(await window.electron.validCurseForgePath(base.cfPath))) {
-      error('There is either an invalid or unset CurseForge location.');
+      error('You need to select a valid CurseForge location.');
+      return false;
+    }
+
+    if (!profilesSet) {
+      error('You need to select both profiles before proceeding.');
       return false;
     }
 
