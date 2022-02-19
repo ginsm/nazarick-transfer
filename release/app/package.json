@@ -1,6 +1,6 @@
 {
   "name": "nazarick-transfer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple Minecraft settings transferring app",
   "main": "./dist/main/main.js",
   "author": {
